@@ -18,7 +18,7 @@ Xaxle1=Xaxle1_in*in2mm;
 Xaxle2=Xaxle2_in*in2mm;
 
 D_hole_weights=7;
-X_weights=120;
+X_weights=116.37; // from Calcs
 
 
 module DefsideProfile(){
@@ -70,10 +70,10 @@ module base(){
     cube([W,L,H]);
     translate([0,Xaxle1,Daxle+1])
         rotate([0,90,0])
-            cylinder(W,Daxle,Daxle);
+            cylinder(W,Daxle/2,Daxle/2);
     translate([0,Xaxle2,Daxle+1]) 
         rotate([0,90,0])   
-            cylinder(W,Daxle,Daxle);
+            cylinder(W,Daxle/2,Daxle/2);
     
     translate([W/2,X_weights,10]) 
         rotate([0,0,0])   
