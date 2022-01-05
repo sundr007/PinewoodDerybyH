@@ -18,34 +18,34 @@ Xaxle1=Xaxle1_in*in2mm;
 Xaxle2=Xaxle2_in*in2mm;
 
 D_hole_weights=7;
-X_weights=116.37; // from Calcs
+X_weights=121.9; // from Calcs
 
 
 module DefsideProfile(){
     difference(){
     polygon(points=[
-    [0,H/5],
+    [0,H/4],
     [0,H],
     [L/3,H],
-    [L/3,H/3+2]
+    [L/3,H/3+2+8]
     ]);
-    translate([L/3,H/3,0])
+    translate([L/3,H/3+6,0])
         circle(d=W*.75);
     }
         polygon(points=[
-    [L+1,H/5],
+    [L+1,H/4],
     [L+1,H],
     [L-L/4,H],
-    [L-L/4,H/3+5]
+    [L-L/4,H/3+6]
     ]);
 
 }
 
 module DeffrontProfile(){
     difference(){
-    translate([H/3,0])
+    translate([H/3+6,0])
         square([H,W]);
-    translate([H/3,W/2])
+    translate([H/3+4,W/2])
         circle(d=W*.75);
     }
     
