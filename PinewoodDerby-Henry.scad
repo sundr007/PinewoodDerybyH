@@ -5,8 +5,11 @@ W_in       =1.75;//in
 L_in       =7;//in
 H_in       =1.25;//in
 Daxle_in   =.073;//in
+Dwheel_in  =1.190;//in
+Wwheel_in  =0.415;//in
 Xaxle1_in  =0.81;//in
 Xaxle2_in  =(0.81+4.4);//in
+
 
 in2mm=25.4;
 
@@ -16,48 +19,63 @@ H=H_in*in2mm;
 Daxle=Daxle_in*in2mm;
 Xaxle1=Xaxle1_in*in2mm;
 Xaxle2=Xaxle2_in*in2mm;
-
+Dwheel=Dwheel_in*in2mm;
+Wwheel=Wwheel_in*in2mm;
 D_hole_weights=7;
-X_weights=121.9; // from Calcs
+X_weights=100.9; // from Calcs
 
+Hbase=15;
+
+module wheels(){
+    translate([-Wwheel-1,Xaxle1,2])
+        rotate([0,90,0])
+            color("black")cylinder(d=Dwheel,h=Wwheel);
+    
+    translate([W+1,Xaxle1,2])
+        rotate([0,90,0])
+            color("black")cylinder(d=Dwheel,h=Wwheel);
+    
+    translate([-Wwheel-1,Xaxle2,2])
+        rotate([0,90,0])
+            color("black")cylinder(d=Dwheel,h=Wwheel);
+    
+    translate([W+1,Xaxle2,2])
+        rotate([0,90,0])
+            color("black")cylinder(d=Dwheel,h=Wwheel);
+    
+}
 
 module DefsideProfile(){
-    difference(){
+
+difference(){
     polygon(points=[
-    [0,H/4],
     [0,H],
-    [L/3,H],
-    [L/3,H/3+2+8]
+    [L+.1,H],
+    [L+.1,Hbase],
+    [0,Hbase],
+    
     ]);
-    translate([L/3,H/3+6,0])
-        circle(d=W*.75);
-    }
-        polygon(points=[
-    [L+1,H/4],
-    [L+1,H],
-    [L-L/4,H],
-    [L-L/4,H/3+6]
-    ]);
+
+//translate([Xaxle1,2,0])
+//    circle(d=Dwheel);
+//        translate([Xaxle2,2,0])
+//    circle(d=Dwheel);
+}
 
 }
 
 module DeffrontProfile(){
-    difference(){
-    translate([H/3+6,0])
-        square([H,W]);
-    translate([H/3+4,W/2])
-        circle(d=W*.75);
-    }
+
     
 }
 
 module DefTopProfile(){
-    polygon(points=[
-    [L+1,W/5],
-    [L+1,W-W/5],
-    [L-L/6,W-W/3],
-    [L-L/6,W/3]
-    ]);
+        hull(){
+translate([L/2-Dwheel/2,W/2,0])
+    circle(d=Dwheel);
+        translate([L/2+Dwheel/2,W/2,0])
+    circle(d=Dwheel);
+    }
 }
 
 
@@ -123,12 +141,14 @@ rotate([0,0,90])
 }
 
 
-difference(){
-    base();
-    sideProfile();
-    frontProfile();
-    topProfile();
-}
+//difference(){
+//    base();
+//    sideProfile();
+//    frontProfile();
+//    topProfile();
+//}
+
+//wheels();
 showFrontProfile();
 showSideProfile();
 showTopProfile();
