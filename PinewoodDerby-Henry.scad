@@ -38,7 +38,7 @@ module wheels(){
             color("black")cylinder(d=Dwheel,h=Wwheel);
     
     translate([W+1,Xaxle1,2])
-        rotate([0,90,0])
+x        rotate([0,90,0])
             color("black")cylinder(d=Dwheel,h=Wwheel);
     
     translate([-Wwheel-1,Xaxle2,2])

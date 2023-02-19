@@ -26,7 +26,8 @@ X_weights=100.9; // from Calcs
 
 Hbase=15;
 
-
+barrelL=80;
+Dbarrel=8;
 
 module DefTopProfile(){
         hull(){
@@ -41,15 +42,27 @@ translate([0,-Dwheel/2,0])
 
 module topModule(){
 
-difference(){union(){
+union(){
+    translate([4,16,16])
+    cylinder(h=10,d=20,center=true);
     translate([0,5,5])
-    cylinder(h=15,d=Dwheel*3/4,center=true);
+    cylinder(h=15,d=Dwheel*3/4*1.03,center=true);
     translate([0,10,13])
         rotate([0,0,-90])
         scale([12,12,12])
-    import("Turret.stl", convexity=20);}
-
+    import("Turret.stl", convexity=20);
+    translate([0,-barrelL/2,12.5])
+    rotate([90,0,0])
+    cylinder(h=barrelL,d=Dbarrel,center=true);
+    translate([0,-barrelL*.95,12.5])
+    rotate([90,0,0])
+    cylinder(h=barrelL*0.1,d=Dbarrel+3,center=true);
+   
+    
+    
 }
+
+
 
 }
 
