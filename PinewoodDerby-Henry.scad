@@ -1,5 +1,11 @@
 $fn=100;
 
+use </home/sundry/github/PinewoodDerybyH/PinewoodDerby-Henry-holder.scad>
+
+use </home/sundry/github/PinewoodDerybyH/PinewoodDerby-Henry-insert.scad>
+
+
+
 // Official Specs
 W_in       =1.75;//in
 L_in       =7;//in
@@ -141,14 +147,18 @@ rotate([0,0,90])
 }
 
 
-//difference(){
-//    base();
-//    sideProfile();
-//    frontProfile();
-//    topProfile();
-//}
+difference(){
+    base();
+    sideProfile();
+    frontProfile();
+    topProfile();
+}
 
+translate([W/2,L/2,12])
+    topModule();
+translate([W/2,L/2,4])
+holder();
 //wheels();
-showFrontProfile();
-showSideProfile();
-showTopProfile();
+//showFrontProfile();
+//showSideProfile();
+//showTopProfile();
